@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTW Campus Event Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="header-container">
+            <h1>HTW Event Hub</h1>
+            <div class="role-selector">
+                <label for="userRole">Current Role:</label>
+                <select id="userRole">
+                    <option value="guest">Guest</option>
+                    <option value="student">Student</option>
+                    <option value="organizer">Organizer / Admin</option>
+                </select>
+            </div>
+        </div>
+        <nav>
+            <button class="nav-btn active" data-view="catalogView">Event Catalog</button>
+            <button class="nav-btn student-only" data-view="myRegistrationsView">My Registrations</button>
+            <button class="nav-btn organizer-only" data-view="organizerDashboardView">Organizer Dashboard</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- VIEW 1: Event Catalog -->
+        <section id="catalogView" class="view-section">
+            <h2>Upcoming Campus Events</h2>
+            <div class="filter-controls">
+                <input type="text" id="searchInput" placeholder="Search events by title or keywords...">
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Career">Career</option>
+                    <option value="Social">Social</option>
+                    <option value="Academic">Academic</option>
+                </select>
+            </div>
+            <div id="eventsList" class="card-grid">
+                <!-- Dynamically rendered via JS -->
+            </div>
+        </section>
+
+        <!-- VIEW 2: Event Details -->
+        <section id="detailView" class="view-section hidden">
+            <button id="backToCatalogBtn">&larr; Back to Events</button>
+            <article id="eventDetailContent">
+                <!-- Dynamically populated via JS -->
+            </article>
+        </section>
+
+        <!-- VIEW 3: Registration Form -->
+        <section id="registerView" class="view-section hidden">
+            <h2>Register for Event</h2>
+            <form id="registrationForm">
+                <input type="hidden" id="regEventId">
+                
+                <label for="studentName">Full Name:</label>
+                <input type="text" id="studentName" required>
+                <span class="error-msg" id="nameError"></span>
+
+                <label for="studentEmail">HTW Student Email:</label>
+                <input type="email" id="studentEmail" placeholder="s0XXXXXX@htw-berlin.de" required>
+                <span class="error-msg" id="emailError"></span>
+
+                <label for="studyProgram">Study Program:</label>
+                <input type="text" id="studyProgram" placeholder="e.g. Cyber Security" required>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Confirm Registration</button>
+                    <button type="button" id="cancelRegBtn" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- VIEW 4: Student Dashboard (My Registrations) -->
+        <section id="myRegistrationsView" class="view-section hidden">
+            <h2>My Registrations</h2>
+            <div id="studentRegistrationsList">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+
+        <!-- VIEW 5: Organizer Dashboard -->
+        <section id="organizerDashboardView" class="view-section hidden">
+            <h2>Organizer Dashboard</h2>
+            <button id="openCreateEventModal" class="btn-primary">+ Create New Event</button>
+
+            <!-- Create / Edit Event Form -->
+            <form id="eventForm" class="hidden">
+                <h3 id="formTitle">Add Event</h3>
+                <input type="hidden" id="eventId">
+
+                <label for="eventTitle">Title:</label>
+                <input type="text" id="eventTitle" required>
+
+                <label for="eventCategory">Category:</label>
+                <select id="eventCategory">
+                    <option value="Workshop">Workshop</option>
+                    <option value="Career">Career</option>
+                    <option value="Social">Social</option>
+                    <option value="Academic">Academic</option>
+                </select>
+
+                <label for="eventDate">Date:</label>
+                <input type="date" id="eventDate" required>
+
+                <label for="eventLocation">Location / Room:</label>
+                <input type="text" id="eventLocation" required>
+
+                <label for="eventDescription">Description:</label>
+                <textarea id="eventDescription" rows="4" required></textarea>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Event</button>
+                    <button type="button" id="cancelEventBtn" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+
+            <h3>Managed Events</h3>
+            <div id="organizerEventsList">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 HTW Berlin - B10 Web Application Project</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
