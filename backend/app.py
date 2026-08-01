@@ -4,7 +4,8 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# In-memory storage for events
+event_counter = 103
+
 events = [
     {
         "id": "evt-101",
@@ -12,7 +13,7 @@ events = [
         "category": "Workshop",
         "date": "2026-08-10",
         "location": "Building C, Room 104",
-        "description": "An interactive workshop covering modern network security, cloud storage models, and basic threat analysis."
+        "description": "Hands-on session covering basics of network security, cloud setup, and threat monitoring."
     },
     {
         "id": "evt-102",
@@ -20,27 +21,27 @@ events = [
         "category": "Career",
         "date": "2026-08-18",
         "location": "Auditorium Max",
-        "description": "Connect with tech companies across Berlin offering internships, working student positions, and entry-level roles."
+        "description": "Meet Berlin tech employers recruiting for working student roles and internships."
     }
 ]
 
-# GET all events
 @app.route('/api/events', methods=['GET'])
 def get_events():
     return jsonify(events), 200
 
-# POST create new event
 @app.route('/api/events', methods=['POST'])
 def add_event():
+    global event_counter
     data = request.get_json()
-    if not data or 'title' not in data:
-        return jsonify({'error': 'Invalid payload'}), 400
     
-    data['id'] = f"evt-{len(events) + 101}"
+    if not data or 'title' not in data:
+        return jsonify({'error': 'Title is required'}), 400
+    
+    event_counter += 1
+    data['id'] = f"evt-{event_counter}"
     events.append(data)
     return jsonify(data), 201
 
-# PUT update event
 @app.route('/api/events/<event_id>', methods=['PUT'])
 def update_event(event_id):
     data = request.get_json()
@@ -48,14 +49,18 @@ def update_event(event_id):
         if evt['id'] == event_id:
             evt.update(data)
             return jsonify(evt), 200
-    return jsonify({'error': 'Event not found'}), 404
+    return jsonify({'error': 'Event missing'}), 404
 
-# DELETE event
 @app.route('/api/events/<event_id>', methods=['DELETE'])
 def delete_event(event_id):
     global events
-    events = [evt for evt in events if evt['id'] != event_id]
-    return jsonify({'message': 'Deleted successfully'}), 200
+    initial_count = len(events)
+    events = [e for e in events if e['id'] != event_id]
+    
+    if len(events) == initial_count:
+        return jsonify({'error': 'Event not found'}), 404
+        
+    return jsonify({'message': 'Deleted'}), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

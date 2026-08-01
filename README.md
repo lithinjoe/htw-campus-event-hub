@@ -1,46 +1,16 @@
-# HTW Berlin Campus Event Hub
+# HTW Campus Event Hub
 
-A full-stack campus event management application built with a responsive JavaScript/HTML/CSS front-end and a containerized Python Flask REST API back-end.
+Small web project for managing HTW campus events. Built with a Flask REST API backend running in Docker and a standard jQuery frontend.
 
----
+## Features
+- **Guest mode**: Search and filter upcoming events.
+- **Student mode**: Register for events using `@htw-berlin.de` email address validation. Save registrations locally.
+- **Organizer mode**: Add, edit, and delete events (communicates directly with backend API).
 
-## System Architecture
+## Running the App
 
-* **Front-End:** HTML5, CSS3, JavaScript (jQuery, AJAX)
-* **Back-End API:** Python 3.11, Flask, Flask-CORS
-* **Containerization:** Docker Desktop
-* **Version Control:** Git & GitHub
-
----
-
-## Application Features
-
-1. **Role-Based Views:**
-   * **Guest:** Browse catalog and search/filter events by category.
-   * **Student:** Register for events with `@htw-berlin.de` email validation and manage personal registrations.
-   * **Organizer:** Full CRUD operations (Create, Read, Update, Delete) for campus events.
-
-2. **REST API Integration:**
-   * All event catalog updates communicate directly with the Flask backend API via JSON over HTTP.
-
----
-
-## API Endpoints
-
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `GET` | `/api/events` | Fetch all scheduled events |
-| `POST` | `/api/events` | Create a new event |
-| `PUT` | `/api/events/<id>` | Update an existing event by ID |
-| `DELETE` | `/api/events/<id>` | Delete an event by ID |
-
----
-
-## How to Run locally
-
-### 1. Run Backend API in Docker
-
+### 1. Backend (Flask API)
+Build and run the container:
 ```bash
-cd backend
 docker build -t htw-backend .
-docker run -d -p 5000:5000 --name htw-api htw-backend
+docker run -p 5000:5000 --name htw-api htw-backend

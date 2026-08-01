@@ -4,18 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTW Campus Event Hub</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- jQuery CDN -->
+    <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 
-    <!-- Header & Navigation -->
     <header>
         <div class="header-container">
             <h1>HTW Event Hub</h1>
             <div class="role-selector">
-                <label for="userRole">Current Role:</label>
+                <label for="userRole">Role:</label>
                 <select id="userRole">
                     <option value="guest">Guest</option>
                     <option value="student">Student</option>
@@ -31,11 +29,10 @@
     </header>
 
     <main>
-        <!-- VIEW 1: Event Catalog -->
         <section id="catalogView" class="view-section">
             <h2>Upcoming Campus Events</h2>
             <div class="filter-controls">
-                <input type="text" id="searchInput" placeholder="Search events by title or keywords...">
+                <input type="text" id="searchInput" placeholder="Search events...">
                 <select id="categoryFilter">
                     <option value="all">All Categories</option>
                     <option value="Workshop">Workshop</option>
@@ -44,20 +41,14 @@
                     <option value="Academic">Academic</option>
                 </select>
             </div>
-            <div id="eventsList" class="card-grid">
-                <!-- Dynamically rendered via JS -->
-            </div>
+            <div id="eventsList" class="card-grid"></div>
         </section>
 
-        <!-- VIEW 2: Event Details -->
         <section id="detailView" class="view-section hidden">
             <button id="backToCatalogBtn">&larr; Back to Events</button>
-            <article id="eventDetailContent">
-                <!-- Dynamically populated via JS -->
-            </article>
+            <article id="eventDetailContent"></article>
         </section>
 
-        <!-- VIEW 3: Registration Form -->
         <section id="registerView" class="view-section hidden">
             <h2>Register for Event</h2>
             <form id="registrationForm">
@@ -81,20 +72,15 @@
             </form>
         </section>
 
-        <!-- VIEW 4: Student Dashboard (My Registrations) -->
         <section id="myRegistrationsView" class="view-section hidden">
             <h2>My Registrations</h2>
-            <div id="studentRegistrationsList">
-                <!-- Dynamically populated -->
-            </div>
+            <div id="studentRegistrationsList"></div>
         </section>
 
-        <!-- VIEW 5: Organizer Dashboard -->
         <section id="organizerDashboardView" class="view-section hidden">
             <h2>Organizer Dashboard</h2>
             <button id="openCreateEventModal" class="btn-primary">+ Create New Event</button>
 
-            <!-- Create / Edit Event Form -->
             <form id="eventForm" class="hidden">
                 <h3 id="formTitle">Add Event</h3>
                 <input type="hidden" id="eventId">
@@ -125,19 +111,15 @@
                 </div>
             </form>
 
-            <h3>Managed Events</h3>
-            <div id="organizerEventsList">
-                <!-- Dynamically populated -->
-            </div>
+            <h3 style="margin-top: 1.5rem;">Managed Events</h3>
+            <div id="organizerEventsList"></div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 HTW Berlin - B10 Web Application Project</p>
+        <p>&copy; 2026 HTW Berlin - Cloud & Web Application Project</p>
     </footer>
 
-    <!-- Scripts -->
-    <script src="js/data.js"></script>
-    <script src="js/app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
