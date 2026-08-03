@@ -25,7 +25,8 @@ function fetchEvents() {
                     category: "Workshop",
                     date: "2026-08-10",
                     location: "Building C, Room 104",
-                    description: "Hands-on session covering network security and threat analysis."
+                    description: "Hands-on session covering network security and threat analysis.",
+                    imageUrl: "https://htweventstore.blob.core.windows.net/banners/cyber-security.jpg"
                 }
             ];
             renderEvents();
@@ -112,9 +113,12 @@ function renderEvents(filteredList) {
     }
 
     list.forEach(evt => {
+        const imgTag = evt.imageUrl ? `<img src="${escapeHtml(evt.imageUrl)}" alt="Banner" style="width:100%; height:130px; object-fit:cover; border-radius:4px; margin-bottom:0.8rem;" onerror="this.style.display='none'">` : '';
+
         const cardHtml = `
             <div class="event-card">
                 <div>
+                    ${imgTag}
                     <span class="badge">${escapeHtml(evt.category)}</span>
                     <h3>${escapeHtml(evt.title)}</h3>
                     <div class="meta-info">
@@ -162,7 +166,10 @@ function openEventDetail(id) {
         regBtn = `<p><em>Switch role to "Student" in top bar to register.</em></p>`;
     }
 
+    const imgTag = evt.imageUrl ? `<img src="${escapeHtml(evt.imageUrl)}" alt="Banner" style="width:100%; max-height:220px; object-fit:cover; border-radius:6px; margin-bottom:1rem;" onerror="this.style.display='none'">` : '';
+
     const detailHtml = `
+        ${imgTag}
         <h2>${escapeHtml(evt.title)}</h2>
         <span class="badge" style="margin: 1rem 0;">${escapeHtml(evt.category)}</span>
         <p><strong>Date:</strong> ${escapeHtml(evt.date)}</p>
@@ -255,12 +262,15 @@ function handleSaveEvent(e) {
     e.preventDefault();
 
     const id = $('#eventId').val();
+    const imageUrl = $('#eventImage').val().trim() || 'https://htweventstore.blob.core.windows.net/banners/default-event.jpg';
+
     const payload = {
         title: $('#eventTitle').val().trim(),
         category: $('#eventCategory').val(),
         date: $('#eventDate').val(),
         location: $('#eventLocation').val().trim(),
-        description: $('#eventDescription').val().trim()
+        description: $('#eventDescription').val().trim(),
+        imageUrl: imageUrl
     };
 
     const isUpdate = Boolean(id);
@@ -318,6 +328,7 @@ function renderOrganizerEvents() {
             $('#eventCategory').val(evt.category);
             $('#eventDate').val(evt.date);
             $('#eventLocation').val(evt.location);
+            $('#eventImage').val(evt.imageUrl || '');
             $('#eventDescription').val(evt.description);
             $('#eventForm').removeClass('hidden');
         }

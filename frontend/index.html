@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTW Campus Event Hub</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 
     <header>
         <div class="header-container">
-            <h1>HTW Event Hub</h1>
+            <h1>HTW Campus Event Hub</h1>
             <div class="role-selector">
-                <label for="userRole">Role:</label>
+                <label for="userRole">Current Role:</label>
                 <select id="userRole">
                     <option value="guest">Guest</option>
                     <option value="student">Student</option>
-                    <option value="organizer">Organizer / Admin</option>
+                    <option value="organizer">Organizer</option>
                 </select>
             </div>
         </div>
@@ -29,6 +29,7 @@
     </header>
 
     <main>
+        <!-- 1. Catalog View -->
         <section id="catalogView" class="view-section">
             <h2>Upcoming Campus Events</h2>
             <div class="filter-controls">
@@ -38,32 +39,39 @@
                     <option value="Workshop">Workshop</option>
                     <option value="Career">Career</option>
                     <option value="Social">Social</option>
-                    <option value="Academic">Academic</option>
                 </select>
             </div>
             <div id="eventsList" class="card-grid"></div>
         </section>
 
+        <!-- 2. Event Detail View -->
         <section id="detailView" class="view-section hidden">
-            <button id="backToCatalogBtn">&larr; Back to Events</button>
-            <article id="eventDetailContent"></article>
+            <button id="backToCatalogBtn" class="btn-secondary" style="margin-bottom: 1rem;">&larr; Back to Catalog</button>
+            <div id="eventDetailContent"></div>
         </section>
 
+        <!-- 3. Registration Form View -->
         <section id="registerView" class="view-section hidden">
-            <h2>Register for Event</h2>
+            <h2>Event Registration</h2>
             <form id="registrationForm">
                 <input type="hidden" id="regEventId">
                 
-                <label for="studentName">Full Name:</label>
-                <input type="text" id="studentName" required>
-                <span class="error-msg" id="nameError"></span>
+                <div>
+                    <label for="studentName">Full Name:</label>
+                    <input type="text" id="studentName" required>
+                    <span id="nameError" class="error-msg"></span>
+                </div>
 
-                <label for="studentEmail">HTW Student Email:</label>
-                <input type="email" id="studentEmail" placeholder="s0XXXXXX@htw-berlin.de" required>
-                <span class="error-msg" id="emailError"></span>
+                <div>
+                    <label for="studentEmail">HTW Email (@htw-berlin.de):</label>
+                    <input type="email" id="studentEmail" placeholder="s0123456@htw-berlin.de" required>
+                    <span id="emailError" class="error-msg"></span>
+                </div>
 
-                <label for="studyProgram">Study Program:</label>
-                <input type="text" id="studyProgram" placeholder="e.g. Cyber Security" required>
+                <div>
+                    <label for="studyProgram">Study Program:</label>
+                    <input type="text" id="studyProgram" placeholder="e.g. Cybersecurity" required>
+                </div>
 
                 <div class="form-actions">
                     <button type="submit" class="btn-primary">Confirm Registration</button>
@@ -72,20 +80,22 @@
             </form>
         </section>
 
+        <!-- 4. Student Dashboard View -->
         <section id="myRegistrationsView" class="view-section hidden">
             <h2>My Registrations</h2>
-            <div id="studentRegistrationsList"></div>
+            <div id="studentRegistrationsList" style="margin-top: 1rem;"></div>
         </section>
 
+        <!-- 5. Organizer Dashboard View -->
         <section id="organizerDashboardView" class="view-section hidden">
             <h2>Organizer Dashboard</h2>
-            <button id="openCreateEventModal" class="btn-primary">+ Create New Event</button>
+            <button id="openCreateEventModal" class="btn-primary" style="margin: 1rem 0;">+ Add New Event</button>
 
-            <form id="eventForm" class="hidden">
+            <form id="eventForm" class="hidden" style="margin-bottom: 2rem; border: 1px solid #E0E0E0; padding: 1.5rem; border-radius: 6px;">
                 <h3 id="formTitle">Add Event</h3>
                 <input type="hidden" id="eventId">
 
-                <label for="eventTitle">Title:</label>
+                <label for="eventTitle">Event Title:</label>
                 <input type="text" id="eventTitle" required>
 
                 <label for="eventCategory">Category:</label>
@@ -93,17 +103,19 @@
                     <option value="Workshop">Workshop</option>
                     <option value="Career">Career</option>
                     <option value="Social">Social</option>
-                    <option value="Academic">Academic</option>
                 </select>
 
                 <label for="eventDate">Date:</label>
                 <input type="date" id="eventDate" required>
 
-                <label for="eventLocation">Location / Room:</label>
+                <label for="eventLocation">Location:</label>
                 <input type="text" id="eventLocation" required>
 
+                <label for="eventImage">Banner Image URL (Azure Blob Storage):</label>
+                <input type="text" id="eventImage" placeholder="https://htweventstore.blob.core.windows.net/banners/sample.jpg">
+
                 <label for="eventDescription">Description:</label>
-                <textarea id="eventDescription" rows="4" required></textarea>
+                <textarea id="eventDescription" rows="3" required></textarea>
 
                 <div class="form-actions">
                     <button type="submit" class="btn-primary">Save Event</button>
@@ -111,15 +123,15 @@
                 </div>
             </form>
 
-            <h3 style="margin-top: 1.5rem;">Managed Events</h3>
             <div id="organizerEventsList"></div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 HTW Berlin - Cloud & Web Application Project</p>
+        <p>&copy; 2026 HTW Berlin - Campus Event Hub</p>
     </footer>
 
-    <script src="app.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
