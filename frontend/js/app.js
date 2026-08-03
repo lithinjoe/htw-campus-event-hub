@@ -1,4 +1,6 @@
-const API_URL = 'http://localhost:5000/api/events';
+const API_URL = window.location.hostname === 'localhost' 
+  ? 'http://localhost:5000/api/events' 
+  : '/api/events';
 
 let events = [];
 let userRegistrations = [];
