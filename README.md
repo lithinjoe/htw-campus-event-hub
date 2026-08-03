@@ -1,16 +1,32 @@
-# HTW Campus Event Hub
+Markdown
+# HTW Event Management System
 
-Small web project for managing HTW campus events. Built with a Flask REST API backend running in Docker and a standard jQuery frontend.
+A containerized cloud application for managing HTW Berlin student events.
 
-## Features
-- **Guest mode**: Search and filter upcoming events.
-- **Student mode**: Register for events using `@htw-berlin.de` email address validation. Save registrations locally.
-- **Organizer mode**: Add, edit, and delete events (communicates directly with backend API).
+## Architecture
+- **Frontend:** HTML5, CSS3, JavaScript (Nginx Container)
+- **Backend:** Python Flask REST API (Docker Container)
+- **Serverless:** Azure Function for image banner uploads
+- **Orchestration:** Kubernetes (Deployments, Services, Ingress)
 
-## Running the App
+## Local Setup & Running
 
-### 1. Backend (Flask API)
-Build and run the container:
+### 1. Docker Compose (Quickstart)
 ```bash
-docker build -t htw-backend .
-docker run -p 5000:5000 --name htw-api htw-backend
+docker-compose up --build
+Access frontend at http://localhost:8080 and API at http://localhost:5000.
+
+2. Manual Container Build
+Bash
+# Backend
+docker build -t htw-backend ./backend
+docker run -p 5000:5000 htw-backend
+
+# Frontend
+docker build -t htw-frontend ./frontend
+docker run -p 8080:80 htw-frontend
+3. Kubernetes Deployment
+Bash
+kubectl apply -f k8s/backend-deployment.yaml
+kubectl apply -f k8s/frontend-deployment.yaml
+kubectl apply -f k8s/ingress.yaml
