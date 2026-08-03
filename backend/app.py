@@ -13,7 +13,8 @@ events = [
         "category": "Workshop",
         "date": "2026-08-10",
         "location": "Building C, Room 104",
-        "description": "Hands-on session covering basics of network security, cloud setup, and threat monitoring."
+        "description": "Hands-on session covering basics of network security, cloud setup, and threat monitoring.",
+        "imageUrl": "https://htweventstore.blob.core.windows.net/banners/cyber-security.jpg"
     },
     {
         "id": "evt-102",
@@ -21,7 +22,8 @@ events = [
         "category": "Career",
         "date": "2026-08-18",
         "location": "Auditorium Max",
-        "description": "Meet Berlin tech employers recruiting for working student roles and internships."
+        "description": "Meet Berlin tech employers recruiting for working student roles and internships.",
+        "imageUrl": "https://htweventstore.blob.core.windows.net/banners/career-day.jpg"
     }
 ]
 
@@ -39,6 +41,10 @@ def add_event():
     
     event_counter += 1
     data['id'] = f"evt-{event_counter}"
+    
+    if 'imageUrl' not in data or not data['imageUrl']:
+        data['imageUrl'] = "https://htweventstore.blob.core.windows.net/banners/default-event.jpg"
+        
     events.append(data)
     return jsonify(data), 201
 
