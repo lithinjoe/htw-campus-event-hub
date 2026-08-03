@@ -9,7 +9,7 @@ The HTW Campus Event Hub is a lightweight web application designed for managing 
 * **Persistence**: Flask server-side event data with client-side `localStorage` for user registrations.
 * **Containerization**: Single-stage Docker containerization for frontend (Nginx) and backend services.
 * **Orchestration**: Kubernetes manifests (`backend-deployment.yaml`, `frontend-deployment.yaml`).
-* **Serverless Component**: Azure Function handling image upload processing (`function_app.py`).
+* **Serverless Component**: Azure Function endpoint prepared for image upload handling and image URL generation (function_app.py).
 
 ## 3. Web Application Features (B10)
 1. **Event Catalog View**: Displays active campus events fetched dynamically via REST API.
