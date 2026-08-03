@@ -28,4 +28,4 @@
 
 ## 6. Conclusion & Module Mapping
 - **Cloud-IT (B8) Compliance:** Achieved through microservice containerization, Kubernetes orchestration, and serverless architecture.
-- **Web Application (B10) Compliance:** Satisfied via a complete responsive frontend, secure REST backend, robust error handling, and structured documentation.
+- **Web Application (B10) Compliance:** Satisfied via a complete responsive frontend, secure REST backend, standard input validation, and structured documentation.
