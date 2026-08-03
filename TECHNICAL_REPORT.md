@@ -23,6 +23,10 @@ The application follows a microservices architecture:
 3. **Cloud Function:** Handles blob upload triggers via Azure Functions API.
 
 ## 3. Implementation Details & Verification
-*(Insert your terminal screenshots here before final submission)*
 - Screenshot 1: `docker-compose up` running without errors.
 - Screenshot 2: `kubectl get pods,svc` output showing running Kubernetes clusters.
+![HTW Campus Event Hub UI](Screenshot%202026-08-03%20185527.jpg)
+
+![Docker Compose Logs Part 1](Screenshot%202026-08-03%20185702.jpg)
+
+![Docker Compose Logs Part 2](Screenshot%202026-08-03%20185719.JPG)
