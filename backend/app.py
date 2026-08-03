@@ -50,7 +50,8 @@ def add_event():
 
 @app.route('/api/events/<event_id>', methods=['PUT'])
 def update_event(event_id):
-    data = request.get_json()
+    data = request.get_json() or {}
+    data.pop('id', None)
     for evt in events:
         if evt['id'] == event_id:
             evt.update(data)

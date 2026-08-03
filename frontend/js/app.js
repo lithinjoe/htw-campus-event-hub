@@ -127,7 +127,7 @@ function renderEvents(filteredList) {
                         <p><strong>Date:</strong> ${escapeHtml(evt.date)}</p>
                         <p><strong>Location:</strong> ${escapeHtml(evt.location)}</p>
                     </div>
-                    <p>${escapeHtml(evt.description.substring(0, 90))}...</p>
+                    <p>${escapeHtml((evt.description || '').substring(0, 90))}...</p>
                 </div>
                 <div style="margin-top: 1rem;">
                     <button class="btn-primary view-details-btn" data-id="${evt.id}">View Details</button>
